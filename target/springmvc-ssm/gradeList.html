@@ -1,0 +1,184 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>gradeList</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+    #gradetable{
+      margin: 2%;
+    }
+    .checkboxdiv{
+      float: left;
+    }
+    p{
+      float: left;
+      margin-right:10px; 
+    }
+    label{
+      float: left;
+      margin-left:10px;
+      margin-right:10px; 
+    }
+
+    span{
+      float: left;
+    }
+    input[type='radio']{
+      margin-left: 10px;
+    }
+    </style>
+  </head>
+  <body>
+  <div id="gradetable">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">专业</th>
+        <th scope="col">年级</th>
+        <th scope="col">学号</th>
+        <th scope="col">姓名</th>
+        <th scope="col">性别</th>
+        <th scope="col">科目</th>
+        <th scope="col">成绩</th>
+        <th scope="col">操作</th>
+
+      </tr>
+    </thead>
+    <tbody id="tbb">
+      <tr>
+        <th scope="row" class="Majors">计算机</th>
+        <td class="classes">2016一班</td>
+        <td class="snos">20160101</td>
+        <td class="snames">张三</td>
+        <td class="sexs">男</td>
+        <td class="subs">数据结构</td>
+        <td class="grades">85</td>
+        <td><a href="#" onclick="modify(this);">修改</a><a href="#" onclick="deleteing(this);">删除</a></td>
+      </tr>
+      <tr>
+        <th scope="row" class="Majors">物联网</th>
+        <td class="classes">2016二班</td>
+        <td class="snos">20160102</td>
+        <td class="snames">李四</td>
+        <td class="sexs">女</td>
+        <td class="subs">C语言程序设计</td>
+        <td class="grades">80</td>
+        <td><a href="#" onclick="modify(this);">修改</a><a href="#" onclick="deleteing(this);">删除</a></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+    <button type="button" class="btn btn-primary" style="float:right;margin-right:2%" onclick="cleanFrom();" style="float:right">新增</button>
+        <form class="bs-example bs-example-form" role="form">
+        <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default search" tabindex="-1">按专业查询</button>
+                            <button type="button" class="btn btn-default searchall" tabindex="-1">查看全部</button>
+                            <button type="button" class="btn btn-default 
+                            dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+                                <span class="caret"></span>
+                                <span class="sr-only">切换查询</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" class="searchway" id="majorway">按专业查询</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="searchway" id="yearway">按年级查询</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="searchway" id="snoway">按学号查询</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="searchway" id="nameway">按姓名查询</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="searchway" id="subway">按科目查询</a>
+                                </li>
+                            </ul>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control">
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                </div>
+                </form>
+  <br>
+  <br>
+  <div class="inputtitle">
+    <h1 class="display-5">学生信息录入</h1>
+    <hr class="my-4">
+  </div>
+  <div id="gradeformdiv">
+  <from id="gradeform" method="post">
+  <div id="major">
+  <p>专业：</p>
+    <span style="margin-left:30px;"></span>   <!--万能空格-->
+    <label class="radio-inline">计算机：<input type="radio" name="optionsRadiosinline" id="computer" value="计算机"></label>
+    <label class="radio-inline">物联网：<input type="radio" name="optionsRadiosinline" id="wlw" value="物联网"></label>
+    <label class="radio-inline">通信：<input type="radio" name="optionsRadiosinline" id="tx" value="通信"></label>
+  </div>
+  <br>
+  <br>
+  <div id="year">
+  <p>年级：</p>
+  <span style="margin-left:30px;"></span>   <!--万能空格-->
+    <div class="input-group-prepend">
+      <button class="btn btn-outline-secondary dropdown-toggle yearchoosed" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">2016一班</button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item yearchoose" href="#">2016一班</a>
+         <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item yearchoose" href="#">2016二班</a>
+         <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item yearchoose" href="#">2016三班</a>
+         <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item yearchoose" href="#">2017一班</a>
+         <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item yearchoose" href="#">2017二班</a>
+         <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item yearchoose" href="#">2017三班</a>
+         <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item yearchoose" href="#">2018一班</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item yearchoose" href="#">2018二班</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item yearchoose" href="#">2018三班</a>
+        <div role="separator" class="dropdown-divider"></div>
+      </div>
+    </div>
+  </p>
+  </div>
+  <br>
+  <div id="sno"><p>学号：</p><input type="text" class="form-control" id="sno" placeholder="请输入学号"></div>
+  <br>
+  <div id="sname"><p>姓名：</p><input type="text" class="form-control" id="name" placeholder="请输入姓名"></div>
+  <br>
+  <div id="sex">
+    <p>性别:</p>
+    <span style="margin-left:50px;"></span>   <!--万能空格-->
+        <label><input type="radio" name="optionsRadios" id="men" value="男">男</label>
+        <label><input type="radio" name="optionsRadios" id="women" value="女">女</label>
+  </div>
+  <br>
+  <br>
+  <div id="subject">
+  <p>科目:</p>
+    <label class="radio-inline">数据结构<input type="radio" name="optionsRadiosinline2" id="DS" value="数据结构"></label>
+    <label class="radio-inline">C语言程序设计<input type="radio" name="optionsRadiosinline2" id="c" value="C语言程序设计"></label>
+    <label class="radio-inline">Java语言程序设计<input type="radio" name="optionsRadiosinline2" id="Java" value="Java语言程序设计"></label>
+  </div>
+  <br>
+  <br>
+  <div id="grade"><p>成绩:</p><input type="text" class="form-control" id="grade" placeholder="请输入成绩"></div>
+  <br>
+  <button type="button" class="btn btn-primary" style="float:left;margin-right:2%" id="submit1">提交</button>
+  </from>
+  </div>
+<script src="js/gradelist.js"></script>
+  </body>
+  </html>

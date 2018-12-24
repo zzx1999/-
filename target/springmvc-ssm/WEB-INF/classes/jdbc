@@ -1,0 +1,14 @@
+jdbc.username=admin
+jdbc.password=19990208
+jdbc.dburl=jdbc:sqlserver://localhost:1433;DatabaseName=StudentScore
+jdbc.driverclass=com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+jdbc.initialSize=0
+
+jdbc.maxActive=20
+
+jdbc.maxIdle=20
+
+jdbc.minIdle=1
+
+jdbc.maxWait=60000

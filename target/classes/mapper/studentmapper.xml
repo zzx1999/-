@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zzx.mapper.StudentMapper">
+<select id="findAllStudent" resultType="student">
+    select * from StudentInfo;
+</select>
+    <select id="findStudentAllAttr" resultType="studentAllAttr">
+        select specialty,grade,studentNo,studentName,studentSex,subjectName,studentScore
+        from (StudentInfo  inner join ScoreInfo on StudentInfo.studentId = ScoreInfo.studentId) inner join SubjectInfo on ScoreInfo.subjectId = SubjectInfo.subjectId
+
+    </select>
+    <select id="searchName" resultType="string">
+        select studentName from StudentInfo where studentNo = #{stuNo}
+    </select>
+    <select id="searchStuId" resultType="java.lang.Integer">
+        select ISNULL(MAX(studentId),0)  from StudentInfo where studentNo = #{stuNo}
+    </select>
+
+</mapper>

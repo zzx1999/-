@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zzx.mapper.ScoreMapper">
+    <select id="findstuScore" parameterType="int" resultType="score">
+        select * from ScoreInfo where subjectId=#{subid} and studentId=#{stuid};
+    </select>
+    <select id="findAllScore">
+        select * from ScoreInfo;
+    </select>
+    <insert id="addScore" >
+        insert into ScoreInfo(subjectId,studentId,studentScore,modifyTime) values (#{subjectId},#{studentId},#{studentScore},#{motime})
+        <selectKey resultType="java.lang.Integer" keyProperty="id" >
+            SELECT @@IDENTITY AS ID
+        </selectKey>
+    </insert>
+    <select id="searchalex" resultType="java.lang.Integer">
+        select ISNULL(MAX(scoreId),0) from ScoreInfo where subjectId = #{subId} and studentId = #{stuId}
+    </select>
+    <update id="updateScore">
+        update ScoreInfo <trim prefix="set" suffixOverrides=",">
+        <if test="subjectId!=null">subjectId=#{subjectId},</if>
+        <if test="studentId!=null">studentId=#{studentId},</if>
+        <if test="studentScore!=null">studentScore=#{studentScore},</if>
+        <if test="motime!=null">modifyTime=#{motime},</if>
+    </trim>
+        where scoreId = #{scoreId}
+    </update>
+    <delete id="delScore">
+        delete from ScoreInfo where scoreId = #{scoreId}
+    </delete>
+    <select id="getGradeSum" resultType="java.lang.Float">
+        select sum(studentScore) from ScoreInfo where studentId = #{sumNo}
+    </select>
+    <select id="getAllGradeSum" resultType="java.lang.Float">
+        select sum(studentScore) from ScoreInfo
+    </select>
+    <select id="getGradeAvg" resultType="java.lang.Float">
+        select avg(studentScore) from ScoreInfo where studentId = #{avgno}
+    </select>
+    <select id="getAllGradeAvg" resultType="java.lang.Float">
+        select avg(studentScore) from ScoreInfo
+    </select>
+
+</mapper>

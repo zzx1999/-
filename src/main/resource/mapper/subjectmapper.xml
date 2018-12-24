@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zzx.mapper.SubjectMapper">
+    <select id="findstusbject" parameterType="int" resultType="subject">
+      select * from SubjectInfo where subjectId = #{subid}
+    </select>
+    <select id="findAllsub" resultType="subject">
+        select * from SubjectInfo
+    </select>
+    <select id="searchId" parameterType="String" resultType="java.lang.Integer">
+        select isnull(MAX(subjectId),0) from SubjectInfo where subjectName = #{subname}
+    </select>
+</mapper>
