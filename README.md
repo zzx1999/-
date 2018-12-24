@@ -1,4 +1,4 @@
-# -
+#Student_ssm总体说明
 基于IDEA开发，使用Maven以及ssm框架搭建
 总体使用了ssm(spring+springmvc+mybatis)框架，使用的IDE工具为IntelliJ IDEA，并且使用Maven进行整体开发，数据库使用的是SQL Server 2008 r2。前端是基于bootstrap框架进行开发，实现的主要功能有：
 1.	显示已录入成绩列表；
